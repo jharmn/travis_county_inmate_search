@@ -1,0 +1,5 @@
+SOAPpy==0.12.22
+defusedxml==0.4.1
+docutils==0.12
+wsgiref==0.1.2
+wstools==0.4.3

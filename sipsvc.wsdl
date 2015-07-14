@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://sheriff.co.travis.tx.us/" xmlns:s1="http://co.travis.tx.us/SIPS" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://sheriff.co.travis.tx.us/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://sheriff.co.travis.tx.us/">
+      <s:import namespace="http://co.travis.tx.us/SIPS" />
+      <s:element name="SearchInmates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstInitial" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchInmatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchInmatesResult" type="tns:ArrayOfInmate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInmate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Inmate" nillable="true" type="s1:Inmate" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInmate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BookingNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInmateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInmateResult" type="s1:Inmate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllInmates">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllInmatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllInmatesResult" type="tns:ArrayOfInmate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCharges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BookingNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChargesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChargesResult" type="tns:ArrayOfCharge" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCharge">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Charge" nillable="true" type="s1:Charge" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://co.travis.tx.us/SIPS">
+      <s:complexType name="Inmate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s1:Address" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Facility" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Offense" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Building" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Charge">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BookingNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeAuthority" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChargeLevel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Court" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CauseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BondAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BondType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SentenceYears" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SentenceMonths" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SentenceDays" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DispositionDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DispositionType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompletionDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SearchInmatesSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchInmates" />
+  </wsdl:message>
+  <wsdl:message name="SearchInmatesSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchInmatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInmateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInmate" />
+  </wsdl:message>
+  <wsdl:message name="GetInmateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInmateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInmatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllInmates" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInmatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllInmatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChargesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCharges" />
+  </wsdl:message>
+  <wsdl:message name="GetChargesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChargesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SIPSvcSoap">
+    <wsdl:operation name="SearchInmates">
+      <wsdl:input message="tns:SearchInmatesSoapIn" />
+      <wsdl:output message="tns:SearchInmatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInmate">
+      <wsdl:input message="tns:GetInmateSoapIn" />
+      <wsdl:output message="tns:GetInmateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInmates">
+      <wsdl:input message="tns:GetAllInmatesSoapIn" />
+      <wsdl:output message="tns:GetAllInmatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCharges">
+      <wsdl:input message="tns:GetChargesSoapIn" />
+      <wsdl:output message="tns:GetChargesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SIPSvcSoap" type="tns:SIPSvcSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SearchInmates">
+      <soap:operation soapAction="http://sheriff.co.travis.tx.us/SearchInmates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInmate">
+      <soap:operation soapAction="http://sheriff.co.travis.tx.us/GetInmate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInmates">
+      <soap:operation soapAction="http://sheriff.co.travis.tx.us/GetAllInmates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCharges">
+      <soap:operation soapAction="http://sheriff.co.travis.tx.us/GetCharges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SIPSvcSoap12" type="tns:SIPSvcSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SearchInmates">
+      <soap12:operation soapAction="http://sheriff.co.travis.tx.us/SearchInmates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInmate">
+      <soap12:operation soapAction="http://sheriff.co.travis.tx.us/GetInmate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInmates">
+      <soap12:operation soapAction="http://sheriff.co.travis.tx.us/GetAllInmates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCharges">
+      <soap12:operation soapAction="http://sheriff.co.travis.tx.us/GetCharges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SIPSvc">
+    <wsdl:port name="SIPSvcSoap" binding="tns:SIPSvcSoap">
+      <soap:address location="https://public.co.travis.tx.us/SIPSpublicSvc/sipsvc.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SIPSvcSoap12" binding="tns:SIPSvcSoap12">
+      <soap12:address location="https://public.co.travis.tx.us/SIPSpublicSvc/sipsvc.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
